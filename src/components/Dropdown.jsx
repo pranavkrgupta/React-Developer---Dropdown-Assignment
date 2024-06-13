@@ -8,6 +8,7 @@ const Dropdown = ({
   labelVisibility,
   labelIconVisibility,
   leftIconVisiblity,
+  required,
 }) => {
   return (
     <div className="dropdown">
@@ -15,14 +16,15 @@ const Dropdown = ({
             Label and clear
             ======================     */}
 
-      <div className="flex justify-between">
+      <div className="upperOfInput">
         {labelVisibility === "Visible" && (
-          <label>
+          <label className="label">
             {label}
             {labelIconVisibility === "Visible" && <Info />}
+            {required && <sup>*</sup>}
           </label>
         )}
-        <div>clear</div>
+        <div className="clear">clear</div>
       </div>
 
       {/*   ======================
@@ -30,7 +32,10 @@ const Dropdown = ({
             ======================     */}
 
       <div className="input-wrapper">
-        <UserCircle className="left-icon" size={24} />
+        {leftIconVisiblity === "Visible" && (
+          <UserCircle className="left-icon" size={24} />
+        )}
+
         <input className="w-full" type="text" placeholder="Lorem Ipsum"></input>
         <CaretRight className="right-icon" size={24} />
       </div>
@@ -42,12 +47,16 @@ Dropdown.PropTypes = {
   label: PropTypes.string,
   labelVisibility: PropTypes.oneOf(["Visible", "Hidden"]),
   labelIconVisibility: PropTypes.oneOf(["Visible", "Hidden"]),
+  required: PropTypes.bool,
+  leftIconVisiblity: PropTypes.oneOf(["Visible", "Hidden"]),
 };
 
 Dropdown.defaultProps = {
   label: "",
   labelVisibility: "Visible",
   labelIconVisibility: "Hidden",
+  required: false,
+  leftIconVisiblity: "Visible",
 };
 
 export default Dropdown;

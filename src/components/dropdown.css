@@ -3,12 +3,22 @@
   border-radius: 10px;
 }
 
-.flex {
+.upperOfInput {
   display: flex;
+  justify-content: space-between;
 }
 
-.justify-between {
-  justify-content: space-between;
+label {
+  display: flex;
+  gap: 0.25rem;
+}
+
+sup {
+  color: red;
+}
+.clear {
+  position: absolute;
+  right: 1.5rem;
 }
 
 input {
