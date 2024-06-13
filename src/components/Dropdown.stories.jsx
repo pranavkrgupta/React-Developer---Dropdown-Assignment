@@ -28,5 +28,9 @@ export const Default = {
     labelIconVisibility: "Hidden",
     required: true,
     leftIconVisiblity: "Visible",
+    helperText: "",
+    text: "",
+    activeItemIndex: -1,
+    onSelect: () => {},
   },
 };
