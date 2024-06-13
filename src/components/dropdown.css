@@ -31,6 +31,10 @@ sup {
   flex-grow: 1;
   cursor: pointer;
 }
+
+::placeholder {
+  color: #777;
+}
 .input-wrapper {
   display: flex;
   align-items: center;
@@ -43,6 +47,7 @@ sup {
 .left-icon,
 .right-icon {
   margin: 0 0.5rem;
+  pointer-events: none;
 }
 
 .helper-text {
@@ -61,6 +66,12 @@ sup {
 
 .SingleNoIcon {
   -webkit-appearance: none;
+  /* visibility: hidden; */
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: green;
 }
 
 .dropdown-list label {
@@ -74,15 +85,15 @@ sup {
   background-color: #f1f1f1;
 }
 
-.dropdown-list label:checked {
-  background-color: #aee6ae;
-}
-
 .dropdown-list input[type="checkbox"],
 .dropdown-list input[type="radio"] {
-  margin-right: 8px;
+  margin-right: 1rem;
 }
 
 .active {
   background-color: #aee6ae;
+}
+
+.Error {
+  border-color: red;
 }

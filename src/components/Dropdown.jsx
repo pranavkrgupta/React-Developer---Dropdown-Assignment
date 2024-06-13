@@ -13,8 +13,10 @@ const Dropdown = ({
   activeItemIndex,
   onSelect,
   type,
+  items,
+  status,
 }) => {
-  const items = ["America", "London", "India", "brazil", "korea", "china"];
+  //   const items = ["America", "London", "India", "brazil", "korea", "china"];
   const [isOpen, setIsOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(activeItemIndex);
   const [selectedItems, setSelectedItems] = useState([]);
@@ -36,13 +38,19 @@ const Dropdown = ({
   };
 
   return (
-    <div className="dropdown">
+    <div className={`dropdown ${status} `}>
       {/*   ======================
             Label and clear
             ======================     */}
 
       <div className="upperOfInput">
-        <div className="clear" onClick={() => setSelectedItems([])}>
+        <div
+          className="clear"
+          onClick={() => {
+            setSelectedItems([]);
+            setSelectedIndex(-1);
+          }}
+        >
           clear
         </div>
         {labelVisibility === "Visible" && (
@@ -58,21 +66,23 @@ const Dropdown = ({
             Input Box
             ======================     */}
 
-      <div className="input-wrapper" onClick={toggleDropdown}>
+      <div className={`input-wrapper ${status}`}>
         {leftIconVisiblity === "Visible" && (
           <UserCircle className="left-icon" size={24} />
         )}
 
         <input
+          onClick={toggleDropdown}
           className="inputbox"
           type="text"
           placeholder={text}
+          disabled={status === "Disabled"}
           value={
             type === "Multi"
               ? selectedItems.join(",")
               : selectedIndex !== -1
                 ? items[selectedIndex]
-                : text
+                : ""
           }
           readOnly
         />
@@ -105,6 +115,7 @@ const Dropdown = ({
               )}
               {type === "Multi" && (
                 <input
+                  className="checkclass"
                   type="checkbox"
                   checked={selectedItems.includes(item)}
                   onChange={() => handeSelect(index)}
