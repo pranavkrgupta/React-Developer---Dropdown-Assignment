@@ -66,6 +66,7 @@ const Dropdown = ({
         <input
           className="inputbox"
           type="text"
+          placeholder={text}
           value={
             type === "Multi"
               ? selectedItems.join(",")
@@ -79,7 +80,7 @@ const Dropdown = ({
       </div>
       {helperText && <div className="helper-text">{helperText}</div>}
       {isOpen && (
-        <ul className="dropdown-list">
+        <div className="dropdown-list">
           {items.map((item, index) => (
             <label
               key={index}
@@ -87,6 +88,7 @@ const Dropdown = ({
             >
               {type === "SingleNoIcon" && (
                 <input
+                  className="SingleNoIcon"
                   type="radio"
                   name="dropdown"
                   checked={selectedIndex === index}
@@ -111,7 +113,7 @@ const Dropdown = ({
               {item}
             </label>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );

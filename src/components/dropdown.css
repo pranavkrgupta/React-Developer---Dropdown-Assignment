@@ -35,7 +35,7 @@ sup {
   display: flex;
   align-items: center;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 10px;
   padding: 0 0.5rem;
   cursor: pointer;
 }
@@ -53,6 +53,14 @@ sup {
 .dropdown-list {
   background-color: white;
   border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow-y: auto;
+  z-index: 1;
+  max-height: 150px;
+}
+
+.SingleNoIcon {
+  -webkit-appearance: none;
 }
 
 .dropdown-list label {
@@ -70,10 +78,10 @@ sup {
   background-color: #aee6ae;
 }
 
-/* .dropdown-list input[type="checkbox"],
+.dropdown-list input[type="checkbox"],
 .dropdown-list input[type="radio"] {
   margin-right: 8px;
-} */
+}
 
 .active {
   background-color: #aee6ae;
