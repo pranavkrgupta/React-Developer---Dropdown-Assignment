@@ -1,9 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { UserCircle, CaretRight } from "@phosphor-icons/react";
+import { UserCircle, CaretRight, Info } from "@phosphor-icons/react";
 import "./dropdown.css";
 // import { useState, useRef } from "react";
-const Dropdown = ({ label, labelVisibility }) => {
+const Dropdown = ({
+  label,
+  labelVisibility,
+  labelIconVisibility,
+  leftIconVisiblity,
+}) => {
   return (
     <div className="dropdown">
       {/*   ======================
@@ -11,7 +16,12 @@ const Dropdown = ({ label, labelVisibility }) => {
             ======================     */}
 
       <div className="flex justify-between">
-        {labelVisibility === "Visible" && <label>{label}</label>}
+        {labelVisibility === "Visible" && (
+          <label>
+            {label}
+            {labelIconVisibility === "Visible" && <Info />}
+          </label>
+        )}
         <div>clear</div>
       </div>
 
@@ -31,11 +41,13 @@ const Dropdown = ({ label, labelVisibility }) => {
 Dropdown.PropTypes = {
   label: PropTypes.string,
   labelVisibility: PropTypes.oneOf(["Visible", "Hidden"]),
+  labelIconVisibility: PropTypes.oneOf(["Visible", "Hidden"]),
 };
 
 Dropdown.defaultProps = {
   label: "",
   labelVisibility: "Visible",
+  labelIconVisibility: "Hidden",
 };
 
 export default Dropdown;

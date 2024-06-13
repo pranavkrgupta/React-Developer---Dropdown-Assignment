@@ -10,5 +10,6 @@ export const Default = {
   args: {
     label: "Label",
     labelVisibility: "Visible",
+    labelIconVisibility: "Hidden",
   },
 };
