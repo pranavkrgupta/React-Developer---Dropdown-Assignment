@@ -1,0 +1,32 @@
+.dropdown {
+  height: 30px;
+  border-radius: 10px;
+}
+
+.flex {
+  display: flex;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+input {
+  /* width: 100%; */
+  width: 100%;
+  height: 40px;
+  border: none;
+  outline: 0;
+}
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0 0.5rem;
+}
+
+.left-icon,
+.right-icon {
+  margin: 0 0.5rem;
+}
