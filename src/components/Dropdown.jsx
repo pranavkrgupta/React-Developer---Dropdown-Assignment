@@ -12,16 +12,27 @@ const Dropdown = ({
   text,
   activeItemIndex,
   onSelect,
+  type,
 }) => {
   const items = ["America", "London", "India", "brazil", "korea", "china"];
   const [isOpen, setIsOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(activeItemIndex);
+  const [selectedItems, setSelectedItems] = useState([]);
 
   const toggleDropdown = () => setIsOpen(!isOpen);
+
   const handeSelect = (index) => {
-    setSelectedIndex(index);
-    onSelect(items[index]);
-    setIsOpen(false);
+    if (type === "Multi") {
+      const newSelectedItems = selectedItems.includes(items[index])
+        ? selectedItems.filter((item) => item !== items[index])
+        : [...selectedItems, items[index]];
+      setSelectedItems(newSelectedItems);
+      onSelect(newSelectedItems);
+    } else {
+      setSelectedIndex(index);
+      onSelect(items[index]);
+      setIsOpen(false);
+    }
   };
 
   return (
@@ -31,7 +42,9 @@ const Dropdown = ({
             ======================     */}
 
       <div className="upperOfInput">
-        <div className="clear">clear</div>
+        <div className="clear" onClick={() => setSelectedItems([])}>
+          clear
+        </div>
         {labelVisibility === "Visible" && (
           <label className="label">
             {label}
@@ -51,8 +64,15 @@ const Dropdown = ({
         )}
 
         <input
+          className="inputbox"
           type="text"
-          value={selectedIndex !== -1 ? items[selectedIndex] : text}
+          value={
+            type === "Multi"
+              ? selectedItems.join(",")
+              : selectedIndex !== -1
+                ? items[selectedIndex]
+                : text
+          }
           readOnly
         />
         <CaretRight className="right-icon" size={24} />
@@ -61,13 +81,35 @@ const Dropdown = ({
       {isOpen && (
         <ul className="dropdown-list">
           {items.map((item, index) => (
-            <li
+            <label
               key={index}
               className={index === selectedIndex ? "active" : ""}
-              onClick={() => handeSelect(index)}
             >
+              {type === "SingleNoIcon" && (
+                <input
+                  type="radio"
+                  name="dropdown"
+                  checked={selectedIndex === index}
+                  onChange={() => handeSelect(index)}
+                />
+              )}
+              {type === "SingleRadio" && (
+                <input
+                  type="radio"
+                  name="dropdown"
+                  checked={selectedIndex === index}
+                  onChange={() => handeSelect(index)}
+                />
+              )}
+              {type === "Multi" && (
+                <input
+                  type="checkbox"
+                  checked={selectedItems.includes(item)}
+                  onChange={() => handeSelect(index)}
+                />
+              )}
               {item}
-            </li>
+            </label>
           ))}
         </ul>
       )}
@@ -86,6 +128,7 @@ Dropdown.PropTypes = {
   activeItemIndex: PropTypes.number,
   items: PropTypes.arrayOf(PropTypes.string).isRequired,
   onSelect: PropTypes.func,
+  type: PropTypes.oneOf(["SingleNoIcon", "SingleRadio", "Multi"]),
 };
 
 Dropdown.defaultProps = {
@@ -98,6 +141,7 @@ Dropdown.defaultProps = {
   text: "",
   activeItemIndex: -1,
   onSelect: () => {},
+  type: "SingleNoIcon",
 };
 
 export default Dropdown;
