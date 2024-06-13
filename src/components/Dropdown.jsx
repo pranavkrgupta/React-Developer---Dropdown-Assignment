@@ -17,6 +17,7 @@ const Dropdown = ({
             ======================     */}
 
       <div className="upperOfInput">
+        <div className="clear">clear</div>
         {labelVisibility === "Visible" && (
           <label className="label">
             {label}
@@ -24,7 +25,6 @@ const Dropdown = ({
             {required && <sup>*</sup>}
           </label>
         )}
-        <div className="clear">clear</div>
       </div>
 
       {/*   ======================

@@ -6,6 +6,7 @@
 .upperOfInput {
   display: flex;
   justify-content: space-between;
+  flex-direction: row-reverse;
 }
 
 label {
@@ -15,10 +16,6 @@ label {
 
 sup {
   color: red;
-}
-.clear {
-  position: absolute;
-  right: 1.5rem;
 }
 
 input {
